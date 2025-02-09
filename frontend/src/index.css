@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+     overflow-x: hidden;
+     /* font-family: "Roboto Condensed", serif; */
+}
+
+@layer {
+     html {
+          scroll-behavior: smooth;
+     }
+}
+
+/* ::-webkit-scrollbar{
+     display: none;
+} */
+
+@theme {
+     --color-primary: #155dfc;
+     --color-secondary: #fff;
+     --color-primary-hover: #1447e6;
+     --color-sidebar-hover: ;
+     --color-light-bg: #f6f8fb;
+}
+
+button {
+     @apply cursor-pointer
+}
+
+.rich-text {
+     font-size: 15px;
+     color: #7A7B7D;
+}
+
+.rich-text p {
+     margin-bottom: 16px;
+}
+
+.rich-text h1 {
+     font-size: 36px;
+     font-weight: 800;
+     color: #252525;
+     margin: 20px 0px;
+}
+
+.rich-text h2 {
+     font-size: 22px;
+     font-weight: 700;
+     color: #252525;
+     margin: 20px 0px;
+}
+
+.rich-text h3 {
+     font-size: 18px;
+     font-weight: 600;
+     color: #333333;
+     margin: 20px 0px;
+}
+
+.rich-text h4 {
+     font-size: 16px;
+     font-weight: 500;
+     color: #444444;
+     margin: 20px 0px;
+}
+
+.rich-text h5 {
+     font-size: 14px;
+     font-weight: 400;
+     color: #555555;
+     margin: 20px 0px;
+}
+
+.rich-text h6 {
+     font-size: 12px;
+     font-weight: 400;
+     color: #666666;
+     margin: 20px 0px;
+}
+
+.rich-text strong {
+     font-weight: 700;
+}
+
+.rich-text ol {
+     margin-left: 30px;
+     list-style-type: decimal;
+}
+
+.rich-text ul {
+     margin-left: 30px;
+     list-style-type: disc;
+}
+
+.rich-text li {
+     margin-bottom: 8px;
+}
+
+.tool-trip {
+     position: relative;
+}
+
+.tool-trip::before {
+
+     @apply content-[attr(data-content)] text-sm absolute bg-black duration-300 text-white border border-gray-500 left-1/2 -translate-x-1/2 rounded-full px-3 bottom-[90%] opacity-0 pointer-events-none
+}
+
+.tool-trip::after {
+
+     @apply content-[""] absolute bottom-[80%] duration-300 opacity-0 border-4 border-t-black text-white border-r-transparent border-l-transparent left-1/2 -translate-x-1/2
+}
+
+.tool-trip:hover::after {
+     @apply bottom-full opacity-100
+}
+
+.tool-trip:hover::before {
+     @apply bottom-[120%] opacity-100
+}
+
+.date-picker {
+     width: 100%;
+     display: flex;
+}
+
+.date-picker div {
+     margin: 0;
+     display: flex;
+}
+
+.date-picker input {
+     font-size: 14px;
+     padding: 9px 12px;
+     color: #555555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.recruiter-container .nav-link {
+     @apply flex items-center p-3 py-3.5 sm:px-6 gap-3.5 w-full hover:bg-gray-100 dark:hover:bg-gray-400/10
+}
+
+.recruiter-container .nav-link.active {
+     @apply bg-gray-400/10 border-r-4 border-blue-500
+}
+
+.view-application table {}
+
+
+/* Style for the sorting arrows */
+.rdt_TableCol_Sortable span {
+     font-size: 7px !important;
+     /* Reduce arrow size */
+     width: 8px !important;
+     height: 8px !important;
+     display: inline-flex;
+     align-items: center;
+}
+
+/* Adjust spacing between text and arrow */
+.rdt_TableCol_Sortable {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 7px;
+     /* Adjust space between text and arrow */
+}
+
+
+.hidden-scrollbar::-webkit-scrollbar {
+     display: none;
+}
+
+.hidden-scrollbar {
+     scrollbar-width: none;
+     /* Hide scrollbar for Firefox */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+     height: 10px;
+     width: 10px;
+}
+
+::-webkit-scrollbar-track {
+     background: white;
+     border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+     background: #5fa5f5;
+     border: 2px solid white;
+     cursor: pointer;
+     border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+     background: #357abd;
+}
+
+.custome-search {
+     border: 2px solid #ddd !important;
+     /* color: red !important; */
+     font-size: 10px !important;
+     /* border-radius: 5px; */
+     padding: 2px 10px !important;
+     margin-bottom: 5px !important;
+}
+
+.custome-search div::before {
+     outline: none !important;
+     border: none !important;
+}
+
+.custome-search div::after {
+     outline: none !important;
+     border: none !important;
+}
+
+.custome-search svg {
+     color: #333;
+}
+
+.custome-search input {
+     margin: 0;
+     width: 300px;
+     font-size: 14px;
+     color: #444;
+}
+
+.custome-search:focus-within {
+     @apply ring-2 ring-blue-200 !border-blue-300;
+     /* border: 2px solid blue !important; */
+}
+
+.menu-item {
+     padding: 0 !important;
+}
+
+.menu-item button {
+     color: #555;
+     width: 100%;
+     padding: 10px 16px;
+     text-align: left;
+     justify-content: start;
+}
+
+
+
+/* =================================== MANAGE JOBS CSS =================================== */
+
+.action-btn {
+     position: relative;
+     overflow: hidden;
+}
+
+.action-btn::after {
+     content: "";
+     position: absolute;
+     background: rgba(255, 255, 255, 0.6);
+     width: 100%;
+     top: 50%;
+     left: 50%;
+     translate: -50% -50%;
+     height: 100%;
+     opacity: 0;
+     transform: scale(0);
+     border-radius: 50%;
+     transition: transform 0.05s, opacity 0.6s;
+}
+
+.action-btn:active::after {
+     opacity: 1;
+     transform: scale(1.5);
+}
