@@ -1,10 +1,13 @@
-require("dotenv").config();
+
+import dotenv from "dotenv"
+dotenv.config();
+
 const PORT = process.env.PORT || 3001;
-const express = require("express");
-const cors = require("cors");
-const getConnection = require("./utils/getConnection");
-const Jobs = require("./models/Job");
-const { default: clerkWebhooks } = require("./controllers/webhooks");
+import express from "express";
+import cors from"cors";
+import getConnection from"./utils/getConnection.js";
+import Jobs from "./models/Job.js";
+import clerkWebhooks from"./controllers/webhooks.js";
 const app = express();
 
 app.use(cors());
