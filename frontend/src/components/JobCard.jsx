@@ -8,7 +8,7 @@ const JobCard = ({ job }) => {
 
      return (
 
-          <div data-aos="zoom-in" data-aos-offset="50" data-aos-once="true" data-aos-duration="1000" className='p-6 shadow bg-white rounded'>
+          <div data-aos="fade-up" data-aos-offset="50" data-aos-once="false" data-aos-duration="1000" className='p-6 shadow bg-white rounded'>
 
                <div className='flex justify-between items-center'>
 

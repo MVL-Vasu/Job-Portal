@@ -1,10 +1,14 @@
-import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Recruiter/Navbar';
 import { assets } from '../../assets/assets';
+import { AppContext } from '../../context/AppContext';
 
 
-const Deshbord = () => {
+const RecruiterPage = () => {
+
+     const { Role, setRole } = useContext(AppContext);
+     const navigate = useNavigate();
 
 
      return (
@@ -12,6 +16,8 @@ const Deshbord = () => {
           <div className='recruiter-container dark:text-white w-full max-h-screen h-screen overflow-hidden'>
 
                <Navbar />
+
+               {/* <div className="overlay fixed h-full w-full bg-black/40 z-20 top-0 left-0"></div> */}
 
                <section className='flex h-full w-full max-h-[91vh]'>
 
@@ -21,15 +27,14 @@ const Deshbord = () => {
 
                          <ul className='flex flex-col gap-1 items-start pt-5'>
 
-                              <NavLink to={"/dashbord/home"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter"} end className={({ isActive }) => `nav-link ${location.pathname === "/recruiter" || location.pathname === "/recruiter/" ? 'active' : ''}`}>
 
-                                   {/* <BsFillGrid1X2Fill /> */}
                                    <img className='min-w-5 w-5 ' src={assets.dashboard_icon} alt="" />
                                    <p className='max-sm:hidden text-sm'>Dashbord</p>
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/add-job"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/add-job"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
                                    {/* <FaRegPlusSquare /> */}
                                    <img className='min-w-5 w-5 ' src={assets.job_Icon} alt="" />
@@ -37,14 +42,14 @@ const Deshbord = () => {
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/manage-job"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/manage-job"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
                                    <img className='min-w-5 w-5 ' src={assets.manage_job} alt="" />
                                    <p className='max-sm:hidden text-sm'>Manage Jobs</p>
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/view-applications"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/view-applications"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
 
                                    {/* <BsPersonFillCheck /> */}
@@ -53,7 +58,7 @@ const Deshbord = () => {
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/notification"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/notification"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
                                    {/* <FaBell /> */}
                                    <img className='min-w-5 w-5 ' src={assets.notification_icon} alt="" />
@@ -61,7 +66,7 @@ const Deshbord = () => {
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/message"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/message"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
                                    {/* <RiMessage2Line /> */}
                                    <img className='min-w-5 w-5 ' src={assets.message_icon} alt="" />
@@ -69,7 +74,7 @@ const Deshbord = () => {
 
                               </NavLink>
 
-                              <NavLink to={"/dashbord/setting"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
+                              <NavLink to={"/recruiter/setting"} className={({ isActive }) => `nav-link ${isActive && 'active'}`}>
 
                                    {/* <IoSettingsSharp /> */}
                                    <img className='min-w-5 w-5 ' src={assets.setting_icon} alt="" />
@@ -80,6 +85,7 @@ const Deshbord = () => {
                          </ul>
 
                     </div>
+
 
                     <div className=' w-[80%] overflow-y-scroll dark:bg-neutral-900 bg-light-bg '>
                          <Outlet />
@@ -95,4 +101,4 @@ const Deshbord = () => {
 
 }
 
-export default Deshbord;
+export default RecruiterPage;

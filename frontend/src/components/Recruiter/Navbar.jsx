@@ -1,18 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { assets } from '../../assets/assets';
+import { AppContext } from '../../context/AppContext';
+import Swal from 'sweetalert2';
+
 import { FaBell } from "react-icons/fa";
 import { MdWbSunny } from "react-icons/md";
-import { AppContext } from '../../context/AppContext';
 import { BsMoonStarsFill } from "react-icons/bs";
+import { FaPowerOff } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 
 
 
 const Navbar = () => {
 
      // const { DarkMode, setDarkMode } = useContext(AppContext);
+     const {Role, setRole} = useContext(AppContext);
      const [DarkMode, setDarkMode] = useState(false);
      const [OpenMenu, setOpenMenu] = useState(false);
      const [OpenNotificationbox, setOpenNotificationbox] = useState(false);
+
+     const dropdownRef = useRef(null);
 
      const handleModeChange = () => {
           setDarkMode(!DarkMode);
@@ -23,13 +30,53 @@ const Navbar = () => {
           }
      }
 
+     const handleLogOut = () => {
+
+          Swal.fire({
+               title: 'Are you sure?',
+               text: "After Logout You have to login again!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonText: `<i class="fa-solid fa-power-off"></i> Logout`,
+               cancelButtonText: 'Cancel',
+               showLoaderOnConfirm: true,
+          })
+               .then(async (result) => {
+                    if (result.isConfirmed) {
+                         await Swal.fire({
+                              title: "Logout Successfull",
+                              icon: "success",
+                         });
+                         localStorage.removeItem("JobPortalAuthToken");
+                         window.location.replace('/')
+                    }
+               })
+
+          // localStorage.removeItem("JobPortalAuthToken");
+     }
+
+     useEffect(() => {
+          const handleClickOutside = (event) => {
+               if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                    setOpenMenu(false);
+               }
+          };
+
+          document.addEventListener("mousedown", handleClickOutside); 
+          return () => {
+               document.removeEventListener("mousedown", handleClickOutside);
+          };
+     }, []);
+
      return (
 
-          <div className='shadow bg-gray-800 dark:bg-black text-white py-3 max-sm:py-3'>
+          <div className='shadow bg-gray-900 dark:bg-black text-white py-3 max-sm:py-3'>
 
                <div className='container flex justify-between items-center px-0 2xl:px-20 mx-auto'>
 
-                    <img className='max-sm:h-6' src={assets.light_logo} alt="" />
+                    <NavLink to={"/recruiter"}>
+                         <img className='max-sm:h-6 cursor-pointer' src={assets.light_logo} alt="" />
+                    </NavLink>
 
                     <div className='flex items-center gap-5'>
 
@@ -71,16 +118,18 @@ const Navbar = () => {
 
                          </div>
 
-                         <p className='font-semibold'>Hi, Vasu</p>
+                         {Role === "user" && <p className='font-semibold'>Hi, Vasu</p>}
 
-                         <div className='relative group flex items-center'>
+                         <div className='relative group flex items-center' ref={dropdownRef}>
 
-                              <button onBlur={() => setOpenMenu(false)} onClick={() => { OpenMenu ? setOpenMenu(false) : setOpenMenu(true) }} className='h-9 outline-2 outline-white overflow-hidden rounded-full focus:outline-2 focus:outline-offset-2'>
+                              <button onClick={() => { OpenMenu ? setOpenMenu(false) : setOpenMenu(true) }} className='h-9 outline-2 outline-white overflow-hidden rounded-full focus:outline-2 focus:outline-offset-2'>
                                    <img className='h-full  ' src={assets.profile_img} alt="" />
                               </button>
 
-                              <div className={`${!OpenMenu ? "scale-75 opacity-0 pointer-events-auto" : "scale-100 opacity-100"} absolute pointer-events-none w-[200px] right-0 z-30 top-[45px] bg-white text-black shadow origin-top-right duration-300 rounded py-1`}>
-                                   <ul className='text-gray-800'>
+                              <div className={`${!OpenMenu ? "scale-75 opacity-0 pointer-events-none" : "scale-100 pointer-events-auto opacity-100"} absolute w-[200px] right-0 z-30 top-[45px] bg-white text-black shadow origin-top-right duration-300 rounded py-1`}>
+
+                                   <ul className='text-gray-800' onClick={() => { setOpenMenu(false) }}>
+
                                         <li className='hover:bg-gray-100 text-sm flex items-center cursor-pointer px-4 py-2'>
                                              <img src={assets.profile_icon} className='h-4 mr-2' alt="" />
                                              My Profile
@@ -91,12 +140,13 @@ const Navbar = () => {
                                              Setting
                                         </li>
 
-                                        <li className='hover:bg-gray-100 text-sm flex items-center cursor-pointer px-4 py-2'>
+                                        <li onClick={handleLogOut} className='hover:bg-gray-100 text-sm flex items-center cursor-pointer px-4 py-2'>
                                              <img src={"https://img.icons8.com/?size=100&id=0nJEXu0vsXkr&format=png&color=000000"} className='h-4 mr-2' alt="" />
                                              Sign Out
                                         </li>
 
                                    </ul>
+
                               </div>
 
                          </div>

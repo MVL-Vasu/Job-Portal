@@ -33,7 +33,7 @@ const RecruiterLogin = () => {
           password: ""
      });
 
-     const [IsFormFilled, setIsFormFilled] = useState(true);
+     const [IsFormFilled, setIsFormFilled] = useState(false);
      const [Image, setImage] = useState();
 
      useEffect(() => {
@@ -51,6 +51,58 @@ const RecruiterLogin = () => {
 
      const handleSubmit = async () => {
 
+          try {
+
+               // let { username, email, password } = formData;
+
+               const Data = new FormData();
+               Data.append('image', Image);
+
+               // Append state data
+               Object.entries(formData).forEach(([key, value]) => {
+                    Data.append(key, value);
+               });
+
+               let response = await fetch("http://localhost:3001/api/company/register", {
+                    method: "POST",
+                    headers: {
+                         // Accept: 'application/data',
+                         // 'Content-Type': 'application/json',
+                    },
+                    body: Data,
+               })
+
+               let result = await response.json();
+
+               // setLoading(false);
+
+               if (result?.success) {
+                    // navigator("/chat");
+                    console.log("Response", result)
+                    toast.success(result.message);
+
+                    window.localStorage.setItem(process.env.TOKEN_NAME, result.token);
+
+                    setshowRecruiterLogin(false);
+                    navigator("/dashbord");
+                    setRole("recruiter");
+
+               }
+               else {
+                    console.log("Result Error : ", result);
+                    toast.error(result?.message);
+               }
+
+          } catch (error) {
+               // setLoading(false);
+               console.log("Login Page Error : ", error);
+               toast.error("Sign Up Failed");
+          }
+
+     }
+
+     const handleNext = async () => {
+
           if (currState === "Sign Up") {
 
                const Errors = [errorbox.current[0], errorbox.current[1], errorbox.current[2]];
@@ -58,42 +110,7 @@ const RecruiterLogin = () => {
 
                if (!validate([username.current, email.current, password.current], Errors, Labels)) {
 
-                    setLoading(true);
-
-                    try {
-
-                         let { username, email, password } = formData;
-
-                         let response = await fetch(api_paths.register, {
-                              method: "POST",
-                              headers: {
-                                   Accept: 'application/json',
-                                   'Content-Type': 'application/json',
-                              },
-                              body: JSON.stringify(formData),
-                         })
-
-                         let result = await response.json();
-
-                         setLoading(false);
-
-                         if (result?.success) {
-                              navigator("/chat");
-                              toast.success(result.message);
-
-                              window.localStorage.setItem("secret_chat", result.token);
-
-                         }
-                         else {
-                              console.log("Result Error : ", result?.error);
-                              toast.error("Result Error : ", result?.error);
-                         }
-
-                    } catch (error) {
-                         setLoading(false);
-                         console.log("Login Page Error : ", error);
-                         toast.error("Sign Up Failed");
-                    }
+                    setIsFormFilled(true);
 
                }
 
@@ -105,13 +122,13 @@ const RecruiterLogin = () => {
 
                if (!validate([email.current, password.current], Errors, Labels)) {
 
-                    setLoading(true);
+                    // setLoading(true);
 
                     try {
 
                          let { email, password } = formData;
 
-                         let response = await fetch(api_paths.login, {
+                         let response = await fetch("http://localhost:3001/api/company/login", {
                               method: "POST",
                               headers: {
                                    Accept: 'application/json',
@@ -122,11 +139,13 @@ const RecruiterLogin = () => {
 
                          let result = await response.json();
 
-                         setLoading(false);
+                         // setLoading(false);
 
                          if (result.success) {
 
-                              window.localStorage.setItem("secret_chat", result.token)
+                              console.log(result.token);
+                              window.localStorage.setItem("JobPortalAuthToken", result.token);
+
 
                               await Swal.fire({
                                    title: "Login Successful",
@@ -137,7 +156,8 @@ const RecruiterLogin = () => {
                                    timerProgressBar: true,
                               })
 
-                              window.location.replace("/chat");
+                              window.location.replace("/recruiter");
+                              // navigator("/dashbord/home");
 
                          }
                          else {
@@ -149,12 +169,12 @@ const RecruiterLogin = () => {
                          }
 
                     } catch (error) {
-                         setLoading(false);
+                         // setLoading(false);
                          console.log("Error: " + error);
                          toast.error("Sign Up Failed");
                     }
 
-                    setLoading(false);
+                    // setLoading(false);
 
                }
 
@@ -162,7 +182,7 @@ const RecruiterLogin = () => {
 
      }
 
-     const handleSubmit2 = () => {
+     const handleNext2 = () => {
           setRole("recruiter");
           navigator("/dashbord")
      }
@@ -176,8 +196,8 @@ const RecruiterLogin = () => {
                          ?
                          <div className='form-container relative'>
 
-                              <div className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
-                                   <IoMdClose onClick={() => setshowRecruiterLogin(false)} />
+                              <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
+                                   <IoMdClose />
                               </div>
 
                               <h1>Profile Upload</h1>
@@ -189,13 +209,17 @@ const RecruiterLogin = () => {
                                    </label>
                               </div>
 
-                              <Button text={currState} onClick={handleSubmit2} />
+                              <Button text={currState} onClick={handleSubmit} />
 
                          </div>
                          :
-                         <div className="form-container">
+                         <div className="form-container relative">
 
                               <h1>Recruiter {currState}</h1>
+
+                              <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
+                                   <IoMdClose />
+                              </div>
 
                               {
                                    currState === "Sign Up"
@@ -266,7 +290,7 @@ const RecruiterLogin = () => {
 
                               </div>
 
-                              <Button text={currState} onClick={handleSubmit} />
+                              <Button text={currState} onClick={handleNext} />
 
                               <div className="form-link">
 

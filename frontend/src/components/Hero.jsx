@@ -23,7 +23,7 @@ const Hero = () => {
 
      return (
 
-          <div className='container 2xl:px-20 mx-auto my-10 max-sm:my-6'>
+          <div className='container 2xl:px-20 mx-auto py-10 max-sm:my-6'>
 
                <div data-aos="fade-in" data-aos-once="true" data-aos-duration="1000" className='bg-gradient-to-r from-purple-800 to-purple-950 text-secondary py-30 max-sm:py-6 text-center mx-2 rounded-xl'>
                     <h2 className="text-2xl md:text-3xl lg:text-5xl font-medium mb-4">Over 10,00+ Jobs to Apply</h2>

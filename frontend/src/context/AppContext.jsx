@@ -8,6 +8,8 @@ export const AppContextProvider = (props) => {
 
      const [DarkMode, setDarkMode] = useState(false);
 
+     const [IsLoading, setIsLoading] = useState(false);
+
      const [searchFilter, setsearchFilter] = useState({
           title: "",
           location: ""
@@ -15,7 +17,7 @@ export const AppContextProvider = (props) => {
 
      const [showRecruiterLogin, setshowRecruiterLogin] = useState(false);
 
-     const [Role, setRole] = useState("user");
+     const [Role, setRole] = useState("");
      // const [Role, setRole] = useState("recruiter");
 
      const [IsSearched, setIsSearched] = useState(false);
@@ -30,7 +32,19 @@ export const AppContextProvider = (props) => {
 
      useEffect(() => {
 
+          setIsLoading(true);
+
           FetchJobsData();
+
+          if (localStorage.getItem("JobPortalAuthToken")) {
+               setRole("recruiter");
+          }else{
+               setRole("user");
+          }
+
+          setTimeout(() => {
+               setIsLoading(false);
+          }, 2000);
 
      }, [])
 
@@ -41,7 +55,8 @@ export const AppContextProvider = (props) => {
           Jobs, setJobs,
           showRecruiterLogin, setshowRecruiterLogin,
           Role, setRole,
-          DarkMode, setDarkMode
+          DarkMode, setDarkMode,
+          IsLoading, setIsLoading
      }
 
      return (<AppContext.Provider value={value}>

@@ -185,10 +185,12 @@ const AddJob = ({ onChange }) => {
           // console.log("Form submitted successfully", requiredFields);
           try {
 
+               const token = localStorage.getItem("JobPortal_token");
+
                const response = await axios.post(
-                    "http://localhost:3001/add-job",
+                    "http://localhost:3001/api/company/post-job",
                     { title: JobTitle, JobDescription: JobDescription, Category: selectedCategory.name, JobType: JobType.name, EmployementType: selectEmpType.name, Country: selectedCountry.name, State: selectedState.name, City: selectedCity, Salary: value, Email: Email, PhoneNo: MobileNo, Address: Address },
-                    { headers: { 'Content-Type': 'application/json' } });
+                    { headers: { 'Content-Type': 'application/json', "token": token } });
 
                if (response.data?.success) {
 
@@ -216,12 +218,12 @@ const AddJob = ({ onChange }) => {
           <div className='p-16 pr-20'>
 
                <div className="input-box flex flex-col">
-                    <label className="block text-sm/6 font-medium text-gray-900" htmlFor="">Job Title</label>
-                    <input value={JobTitle} onChange={(e) => setJobTitle(e.target.value)} className='border-2 mt-1 py-1.5 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Type Job Title Here' />
+                    <label className="block text-sm/6 font-medium dark:text-white" htmlFor="">Job Title</label>
+                    <input value={JobTitle} onChange={(e) => setJobTitle(e.target.value)} className='bg-white dark:text-black border-2 mt-1 py-1.5 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Type Job Title Here' />
                </div>
 
                <div className="input-box mt-6 flex flex-col">
-                    <label className="block text-sm/6 font-medium text-gray-900" htmlFor="">Job Description</label>
+                    <label className="block text-sm/6 font-medium dark:text-white" htmlFor="">Job Description</label>
                     {/* <textarea value={JobDescription} onChange={(e) => setJobDescription(e.target.value)} rows={5} className='border-2 min-h-[100px] mt-1 py-1.5 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Type Job Title Here' /> */}
                     {/* <div ref={editorRef}></div> */}
                     {/* <Editor
@@ -247,7 +249,7 @@ const AddJob = ({ onChange }) => {
                               ],
                               ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
                          }}
-                         initialValue="Welcome to TinyMCE!"
+                         initialValue="<h3>Job Description</h3>"
                          onEditorChange={(newContent) => {
                               setJobDescription(newContent);
                               onChange && onChange(newContent);
@@ -261,7 +263,7 @@ const AddJob = ({ onChange }) => {
 
                          <Listbox value={selectedCategory} onChange={setSelectedCategory}>
 
-                              <Label className="block text-sm/6 font-medium text-gray-900">Job Category</Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white">Job Category</Label>
 
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -306,7 +308,7 @@ const AddJob = ({ onChange }) => {
 
                          <Listbox multiple={true} value={JobType} onChange={setJobType}>
 
-                              <Label className="block text-sm/6 font-medium text-gray-900">Job Type</Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white">Job Type</Label>
 
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -352,7 +354,7 @@ const AddJob = ({ onChange }) => {
 
                          <Listbox value={selectEmpType} onChange={setSelectEmpType}>
 
-                              <Label className="block text-sm/6 font-medium text-gray-900">Employment Type</Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white">Employment Type</Label>
 
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -400,7 +402,7 @@ const AddJob = ({ onChange }) => {
 
                     <div className='w-full'>
                          <Listbox value={selectedCountry} onChange={handleCountryChange}>
-                              <Label className="block text-sm/6 font-medium text-gray-900"> Country </Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white"> Country </Label>
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
@@ -440,7 +442,7 @@ const AddJob = ({ onChange }) => {
 
                     <div className='w-full'>
                          <Listbox value={selectedState} onChange={handleStateChange}>
-                              <Label className="block text-sm/6 font-medium text-gray-900"> State </Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white"> State </Label>
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
@@ -490,7 +492,7 @@ const AddJob = ({ onChange }) => {
 
                     <div className='w-full'>
                          <Listbox value={selectedCity} onChange={setSelectedCity}>
-                              <Label className="block text-sm/6 font-medium text-gray-900"> City </Label>
+                              <Label className="block text-sm/6 font-medium dark:text-white"> City </Label>
                               <div className="relative mt-2">
                                    <ListboxButton className="grid w-full cursor-pointer grid-cols-1 rounded-md bg-white py-2 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                                         <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
@@ -549,14 +551,15 @@ const AddJob = ({ onChange }) => {
 
                     <Box sx={{ width: "75%" }}>
 
-                         <label className="block mb-2 text-sm/6 font-medium text-gray-900" htmlFor="">Salary</label>
+                         <label className="block mb-2 text-sm/6 font-medium dark:text-white" htmlFor="">Salary</label>
 
                          <div className='flex items-center'>
 
                               <div className=''>
-                                   <label className=" font-medium text-gray-900" htmlFor="">₹ </label>
+                                   <label className=" font-medium dark:text-white" htmlFor="">₹ </label>
                                    <Input
                                         value={value[0]}
+                                        className='bg-white'
                                         size="small"
                                         name='start'
                                         onChange={handleInputChange}
@@ -571,14 +574,15 @@ const AddJob = ({ onChange }) => {
                                    />
                               </div>
 
-                              <label className="mx-5 font-medium text-gray-900" htmlFor="">To </label>
+                              <label className="mx-5 font-medium dark:text-white" htmlFor="">To </label>
 
                               <div className='flex items-center gap-2'>
-                                   <label className="font-medium text-gray-900" htmlFor="">₹ </label>
+                                   <label className="font-medium dark:text-white" htmlFor="">₹ </label>
                                    <Input
                                         value={value[1]}
                                         size="small"
                                         name='end'
+                                        className='bg-white'
                                         onChange={handleInputChange2}
                                         onBlur={handleBlur}
                                         inputProps={{
@@ -634,10 +638,10 @@ const AddJob = ({ onChange }) => {
                     </Box>
 
                     <div className='flex flex-col w-full justify-center'>
-                         <label className="mb-1.5 block text-sm/6 font-medium text-gray-900" htmlFor="">Last Date To Apply</label>
+                         <label className="mb-1.5 block text-sm/6 font-medium dark:text-white" htmlFor="">Last Date To Apply</label>
                          <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <DateTimePicker
-                                   className='date-picker'
+                                   className='date-picker bg-white rounded'
                                    // label="Last Date To Apply"
                                    viewRenderers={{
                                         hours: renderTimeViewClock,
@@ -660,18 +664,18 @@ const AddJob = ({ onChange }) => {
 
                <div className='flex items-center gap-4 mt-4'>
                     <div className="input-box w-full flex flex-col">
-                         <label className="block text-sm/6 font-medium text-gray-900" htmlFor="">Email Address</label>
-                         <input value={Email} onChange={(e) => setEmail(e.target.value)} className='border-2 mt-1 py-2 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Enter Company Email Address' />
+                         <label className="block text-sm/6 font-medium dark:text-white" htmlFor="">Email Address</label>
+                         <input value={Email} onChange={(e) => setEmail(e.target.value)} className='bg-white border-2 mt-1 py-2 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Enter Company Email Address' />
                     </div>
                     <div className="input-box w-full flex flex-col">
-                         <label className="block text-sm/6 font-medium text-gray-900" htmlFor="">Contact Number</label>
-                         <input value={MobileNo} onChange={(e) => setMobileNo(e.target.value)} className='border-2 mt-1 py-2 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Enter Contact Number' />
+                         <label className="block text-sm/6 font-medium dark:text-white" htmlFor="">Contact Number</label>
+                         <input value={MobileNo} onChange={(e) => setMobileNo(e.target.value)} className='bg-white border-2 mt-1 py-2 outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Enter Contact Number' />
                     </div>
                </div>
 
                <div className="input-box mt-6 flex flex-col">
-                    <label className="block text-sm/6 font-medium text-gray-900" htmlFor="">Address</label>
-                    <textarea value={Address} onChange={(e) => setAddress(e.target.value)} rows={5} className='border-2 mt-1 py-1.5 min-h-[100px] outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Type Company Address Here...' />
+                    <label className="block text-sm/6 font-medium dark:text-white" htmlFor="">Address</label>
+                    <textarea value={Address} onChange={(e) => setAddress(e.target.value)} rows={5} className='bg-white border-2 mt-1 py-1.5 min-h-[100px] outline-none px-3 text-sm rounded focus:ring-3 focus:ring-blue-200 focus:border-blue-300 border-gray-300' type="text" placeholder='Type Company Address Here...' />
                </div>
 
                <Button text={"Post Job"} onClick={handleSubmit} className='mt-5 w-full py-2 bg-primary text-white font-semibold text-lg rounded-lg focus:ring-4 focus:outline focus:outline-white focus:ring-blue-300 duration-200 hover:bg-primary-hover' />

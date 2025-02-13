@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { manageJobsData } from '../../assets/assets';
 import { Box, Button, IconButton, Popover, MenuItem } from '@mui/material';
 import moment from "moment";
@@ -17,10 +17,45 @@ import {
      GridToolbarDensitySelector,
      GridToolbarQuickFilter
 } from "@mui/x-data-grid";
+import axios from 'axios';
+import { AppContext } from '../../context/AppContext';
 
 
 
 const ManageJob = () => {
+
+     const {IsLoading, setIsLoading} = useContext(AppContext);
+
+     const [jobs, setJobs] = useState([]);
+
+     useEffect(() => {
+          const fetchJobs = async () => {
+               try {
+                    setIsLoading(true);
+                    const token = localStorage.getItem("JobPortalAuthToken");
+
+                    if (!token) {
+                         console.error("No token found");
+                         return;
+                    }
+
+                    const response = await axios.get("http://localhost:3001/api/company/list-jobs", {
+                         headers: {
+                              "Content-Type": "application/json",
+                              // "Authorization": `Bearer ${token}`,
+                              "token": token
+                         },
+                    });
+
+                    setJobs(response.data.jobsData); // Assuming the API returns job data
+                    setIsLoading(false);
+               } catch (error) {
+                    console.error("Error fetching jobs:", error);
+               }
+          };
+
+          fetchJobs();
+     }, []);
 
      const [menuPosition, setMenuPosition] = useState(null);
 
@@ -96,13 +131,21 @@ const ManageJob = () => {
           {
                field: "title",
                headerName: "jobTitle",
+               // flex: 1,
+               width : 250,
+               cellClassName: "name-column--cell",
+               headerClassName: "custom-header",
+          },
+          {
+               field: "City",
+               headerName: "Location",
                flex: 1,
                cellClassName: "name-column--cell",
                headerClassName: "custom-header",
           },
           {
-               field: "location",
-               headerName: "Location",
+               field: "Category",
+               headerName: "Category",
                flex: 1,
                cellClassName: "name-column--cell",
                headerClassName: "custom-header",
@@ -150,9 +193,11 @@ const ManageJob = () => {
 
                {/* <input type="search" value={Search} onChange={(e) => setSearch(e.target.value)} className='w-full py-2 px-6 border border-gray-200' placeholder='search here...' /> */}
 
+               <button onClick={()=>console.log(jobs)}>Jobs Data</button>
+
                <h1 className='text-[20px] font-semibold mb-2'>Manage Jobs</h1>
 
-               <div className='bg-white shadow-lg rounded-lg'>
+               <div className='bg-white dark:bg-dark-table-bg shadow-lg rounded-lg'>
                     <Box
                          m={"0"}
                          p={"10px"}
@@ -172,10 +217,7 @@ const ManageJob = () => {
                                    border: "none"
                               },
                               '& .MuiDataGrid-cell[data-field="id"]': { // Target cells of the 'amount' column
-                                   textAlign: 'center', // CSS property for right alignment
-                              },
-                              '& .MuiDataGrid-columnHeader[data-field="id"]': { // Target header of 'amount'
-                                   textAlign: 'center',
+                                   paddingLeft : "10px" // CSS property for right alignment
                               },
                               "& .MuiDataGrid-columnHeaders": {
                                    backgroundColor: "#fff", // Custom background color (blue-800)
@@ -186,7 +228,8 @@ const ManageJob = () => {
                               },
                               "& .MuiDataGrid-cell": {
                                    fontSize: "12px",
-                                   color: "#4a5a6b"
+                                   // color: "#4a5a6b"
+                                   color : "var(--tw-bg)"
                               },
                               "& .MuiDataGrid-columnHeaderCheckbox": {
                                    backgroundColor: "#4B5563", // Change this color as needed
@@ -194,8 +237,12 @@ const ManageJob = () => {
                          }}
                     >
                          <DataGrid
-                              rows={manageJobsData}
+                              rows={jobs.map((job,index) =>({
+                                   ...job,
+                                   id : index+1
+                              }))}
                               columns={columns}
+                              // getRowId={(row) => row._id} 
                               paginationMode={"client"}
                               className='custom-scrollbar min-h-[500px]'
                               checkboxSelection

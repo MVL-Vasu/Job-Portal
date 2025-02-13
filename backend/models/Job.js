@@ -30,6 +30,10 @@ const JobSchema = new mongoose.Schema({
      Salary: {
           type: [Number]
      },
+     date : {
+          type : Date,
+          default : Date.now()
+     },
      lastDateToApply: {
           type: Date
      },
@@ -41,6 +45,15 @@ const JobSchema = new mongoose.Schema({
      },
      Address: {
           type: String
+     },
+     visible : {
+          type: Boolean,
+          default : true
+     },
+     companyId : {
+          type : mongoose.Schema.Types.ObjectId,
+          ref : 'Company',
+          required : true
      }
 })
 
