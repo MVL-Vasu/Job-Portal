@@ -161,31 +161,31 @@ const AddJob = ({ onChange }) => {
 
      const handleSubmit = async () => {
 
-          // const requiredFields = {
-          //      JobTitle,
-          //      JobDescription,
-          //      selectedCategory,
-          //      JobType,
-          //      selectEmpType,
-          //      selectedCountry,
-          //      selectedState: selectedState.id !== 0 ? selectedState : "",
-          //      selectedCity: selectedCity !== "Select City" ? selectedCity : "",
-          //      Email,
-          //      MobileNo,
-          //      Address
-          // };
+          const requiredFields = {
+               JobTitle,
+               JobDescription,
+               selectedCategory,
+               JobType,
+               selectEmpType,
+               selectedCountry,
+               selectedState: selectedState.id !== 0 ? selectedState : "",
+               selectedCity: selectedCity !== "Select City" ? selectedCity : "",
+               Email,
+               MobileNo,
+               Address
+          };
 
-          // for (const [key, value] of Object.entries(requiredFields)) {
-          //      if (!value || (Array.isArray(value) && value.length === 0)) {
-          //           toast.error(`${key.replace(/([A-Z])/g, " $1")} is required`, { className: "top-6" });
-          //           return;
-          //      }
-          // }
+          for (const [key, value] of Object.entries(requiredFields)) {
+               if (!value || (Array.isArray(value) && value.length === 0)) {
+                    toast.error(`${key.replace(/([A-Z])/g, " $1")} is required`, { className: "top-6" });
+                    return;
+               }
+          }
 
           // console.log("Form submitted successfully", requiredFields);
           try {
 
-               const token = localStorage.getItem("JobPortal_token");
+               const token = localStorage.getItem("JobPortalAuthToken");
 
                const response = await axios.post(
                     "http://localhost:3001/api/company/post-job",

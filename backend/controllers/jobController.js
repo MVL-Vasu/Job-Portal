@@ -1,4 +1,7 @@
+import mongoose from "mongoose";
+import Applications from "../models/JobApplication.js";
 import Jobs from "../models/Job.js";
+
 
 // Get All Jobs
 
@@ -8,7 +11,6 @@ export const getJobs = async (req, res) => {
 
           const jobs = await Jobs.find({ visible: true })
                .populate({ path: 'companyId', select: '-password' })
-
 
           res.status(200).json({ success: true, message: "Job Fetched Successfully", jobs: jobs });
 
@@ -29,7 +31,7 @@ export const getSingleJob = async (req, res) => {
      try {
 
           const { id } = req.params;
-          
+
           const job = await Jobs.findById(id)
                .populate({ path: 'companyId', select: '-password' })
 
@@ -50,4 +52,4 @@ export const getSingleJob = async (req, res) => {
 }
 
 
-// 
+

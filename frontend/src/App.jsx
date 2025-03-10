@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Recruiter/Navbar';
 import Home from './pages/Home';
-import JobApply from './pages/JobApply';
+import JobDetails from './pages/JobDetails';
 import Applications from './pages/Applications';
 import Footer from './components/Footer';
 import AOS from 'aos';
@@ -11,7 +11,7 @@ import 'aos/dist/aos.css'; // You can also use <link> for styles
 import RecruiterLogin from './components/Auth/RecruiterLogin';
 import { AppContext } from './context/AppContext';
 import RecruiterPage from './pages/Recruiter/RecruiterPage';
-import AddJob from './pages/Recruiter/AddJob';
+// import AddJob from './pages/Recruiter/AddJob';
 import ManageJob from './pages/Recruiter/ManageJob';
 import ViewApplications from './pages/Recruiter/ViewApplications';
 import RecruiterHome from './components/Recruiter/RecruiterHome';
@@ -21,6 +21,11 @@ import Message from './components/Recruiter/Message';
 import SmallLoader from './components/SmallLoader';
 import Loader from './components/Loader/Loader';
 import ProtectedRoute from './context/ProtectedRoutes';
+import JobListing from './pages/JobListing';
+import { Button } from '@mui/material';
+import { FaAngleUp } from 'react-icons/fa6';
+import AddJob from './pages/Recruiter/AddJob';
+import Profile from './components/Profile';
 
 
 AOS.init();
@@ -29,19 +34,40 @@ const App = () => {
 
      const { showRecruiterLogin, setshowRecruiterLogin, IsLoading, setIsLoading, Role, setRole } = useContext(AppContext);
 
-     // useEffect(() => {
+     const [ScrollTop, setScrollTop] = useState(false);
 
-     //      setIsLoading(true);
+     useEffect(() => {
 
-     //      if (localStorage.getItem("JobPortalAuthToken")) {
-     //           setRole("recruiter");
-     //      }
+          setIsLoading(true);
 
-     //      setTimeout(() => {
-     //           setIsLoading(false);
-     //      }, 2000);
+          if (localStorage.getItem("JobPortalAuthToken")) {
+               setRole("recruiter");
+          }
 
-     // }, [])
+          setTimeout(() => {
+               setIsLoading(false);
+          }, 2000);
+
+     }, [])
+
+     useEffect(() => {
+
+          const toggleScrollTop = () => {
+               if (window.scrollY > 300) {
+                    setScrollTop(true);
+               } else {
+                    setScrollTop(false);
+               }
+          }
+
+          window.addEventListener("scroll", toggleScrollTop);
+          return () => window.removeEventListener("scroll", toggleScrollTop);
+
+     }, []);
+
+     const ScrollToTop = () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+     }
 
      useEffect(() => {
           if (IsLoading) {
@@ -57,17 +83,11 @@ const App = () => {
 
                {/* <SmallLoader/> */}
                {IsLoading && <Loader />}
-               
-               <Navbar/>
 
-               {showRecruiterLogin && <RecruiterLogin />}
-               {/* {Role === "user" && <Navbar />} */}
 
-               {/* {Role !== "user"
-                    ? */}
+               <RecruiterLogin />
+
                <Routes>
-
-                    {/* <Route path="/dashbord" element={<Dashbord />} /> */}
 
                     <Route path="/recruiter" element={
                          <ProtectedRoute roles={['recruiter']} >
@@ -88,8 +108,10 @@ const App = () => {
                               <Home />
                          </ProtectedRoute>
                     } >
-                         <Route path="apply-job/:id" element={<JobApply />} />
+                         <Route path="job-listing" element={<JobListing />} />
+                         <Route path="apply-job/:id" element={<JobDetails />} />
                          <Route path="applications" element={<Applications />} />
+                         <Route path="profile" element={<Profile />} />
                     </Route>
 
                     <Route path="*" element={
@@ -100,14 +122,14 @@ const App = () => {
                     } />
 
                </Routes>
-               {/* : */}
-               {/* <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/apply-job/:id" element={<JobApply />} />
-                    <Route path="/applications" element={<Applications />} />
-               </Routes> */}
 
-               {/* } */}
+               {/* <Button variant="contained" onClick={ScrollToTop} className={`!fixed ${ScrollTop ? "!opacity-100 !pointer-events-auto !bottom-10" : "!opacity-0 !pointer-events-none !-bottom-10"} !duration-500 right-10 !p-0 !min-w-13 !min-h-13 !font-bold !text-xl `}>
+                    <FaAngleUp />
+               </Button> */}
+
+               <button onClick={ScrollToTop} className={`!fixed bg-blue-500 ${ScrollTop ? "!pointer-events-auto !bottom-10" : "!pointer-events-none -bottom-20"} !duration-500 rounded-lg flex items-center justify-center text-white right-10 !p-0 !min-w-13 z-10 !min-h-13 !font-bold !text-xl `}>
+                    <FaAngleUp />
+               </button>
 
                {Role === "user" && <Footer />}
 

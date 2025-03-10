@@ -27,9 +27,14 @@ const clerkWebhooks = async (req, res) => {
 
                     const userdata = {
                          _id: data.id,
-                         email: data.email_addresses[0].email_address,
                          name: data.first_name + " " + data.last_name,
+                         email: data.email_addresses[0].email_address,
                          image: data.image_url,
+                         city : 'junagadh',
+                         state : 'gujarat',
+                         country : 'india',
+                         gender : 'male',
+                         number  : 0,
                          resume: ''
                     }
                     await User.create(userdata)

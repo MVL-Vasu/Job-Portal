@@ -36,14 +36,14 @@ const RecruiterLogin = () => {
      const [IsFormFilled, setIsFormFilled] = useState(false);
      const [Image, setImage] = useState();
 
-     useEffect(() => {
+     // useEffect(() => {
 
-          document.body.style.overflowY = "hidden";
-          return () => {
-               document.body.style.overflowY = "unset";
-          }
+     //      document.body.style.overflowY = "hidden";
+     //      return () => {
+     //           document.body.style.overflowY = "unset";
+     //      }
 
-     }, []);
+     // }, []);
 
      const handleChange = (e) => {
           setformData({ ...formData, [e.target.name]: e.target.value });
@@ -81,7 +81,7 @@ const RecruiterLogin = () => {
                     console.log("Response", result)
                     toast.success(result.message);
 
-                    window.localStorage.setItem(process.env.TOKEN_NAME, result.token);
+                    window.localStorage.setItem("JobPortalAuthToken", result.token);
 
                     setshowRecruiterLogin(false);
                     navigator("/dashbord");
@@ -189,141 +189,145 @@ const RecruiterLogin = () => {
 
      return (
 
-          <div className='fixed bg-stone-900/30 backdrop-blur-xs z-20 auth-container'>
+          <div className={` ${showRecruiterLogin ? "z-20 opacity-100" : "-z-10 opacity-0"} duration-500 fixed bg-stone-900/30 backdrop-blur-xs  auth-container`}>
 
-               {
-                    IsFormFilled
-                         ?
-                         <div className='form-container relative'>
+               {/* <div className='fixed  w-full h-full top-0 leading-0'></div> */}
 
-                              <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
-                                   <IoMdClose />
-                              </div>
+               <div className={`${showRecruiterLogin ? "translate-y-0 z-20 opacity-100" : "-translate-y-[100px] -z-10 opacity-0"} duration-500 `}>
+                    {
+                         IsFormFilled
+                              ?
+                              <div className='form-container relative'>
 
-                              <h1>Profile Upload</h1>
+                                   <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
+                                        <IoMdClose />
+                                   </div>
 
-                              <div className='flex items-center justify-center mb-5'>
-                                   <label className='cursor-pointer max-h-[250px] overflow-scroll' htmlFor="image">
-                                        <img className='w-[200px] overflow-scroll' src={Image ? URL.createObjectURL(Image) : assets.upload_area} alt="" />
-                                        <input accept='.jpg, .jpeg, .png,.avif' onChange={(e) => setImage(e.target.files[0])} type="file" id='image' hidden />
-                                   </label>
-                              </div>
+                                   <h1>Profile Upload</h1>
 
-                              <Button text={currState} onClick={handleSubmit} />
+                                   <div className='flex items-center justify-center mb-5'>
+                                        <label className='cursor-pointer max-h-[250px] overflow-scroll' htmlFor="image">
+                                             <img className='w-[200px] overflow-scroll' src={Image ? URL.createObjectURL(Image) : assets.upload_area} alt="" />
+                                             <input accept='.jpg, .jpeg, .png,.avif' onChange={(e) => setImage(e.target.files[0])} type="file" id='image' hidden />
+                                        </label>
+                                   </div>
 
-                         </div>
-                         :
-                         <div className="form-container relative">
-
-                              <h1>Recruiter {currState}</h1>
-
-                              <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
-                                   <IoMdClose />
-                              </div>
-
-                              {
-                                   currState === "Sign Up"
-                                        ?
-                                        <div className="input-box">
-
-                                             <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
-                                             <Input
-                                                  type="text"
-                                                  value={formData.username}
-                                                  name="username"
-                                                  placeholder={""}
-                                                  inputRef={username}
-                                                  onKeyUp={() => ValidateUsername(username.current, errorbox.current[0], labels.current[0])}
-                                                  onChange={handleChange}
-                                                  spellCheck={false}
-                                             />
-
-                                             <label ref={(e) => (labels.current[0] = e)} htmlFor="username" className='floating-label'>Enter Username</label>
-
-                                             <div ref={(e) => (errorbox.current[0] = e)} className="error username-error"> <i className="material-icons">info_outline</i> invalid username </div>
-
-                                        </div>
-                                        :
-                                        <></>
-                              }
-
-                              <div className="input-box">
-
-                                   <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
-
-                                   <Input
-                                        type="email"
-                                        value={formData.email}
-                                        name="email"
-                                        placeholder={""}
-                                        inputRef={email}
-                                        onKeyUp={() => ValidateEmail(email.current, errorbox.current[1], labels.current[1])}
-                                        onChange={handleChange}
-                                        spellCheck={false}
-                                   />
-
-                                   <label ref={(e) => (labels.current[1] = e)} htmlFor="email" className='floating-label'>Enter Email</label>
-
-                                   <div ref={(e) => (errorbox.current[1] = e)} className="error email-error"> <i className="material-icons">info_outline</i> </div>
+                                   <Button text={currState} onClick={handleSubmit} />
 
                               </div>
+                              :
+                              <div className="form-container relative">
 
-                              <div className="input-box">
+                                   <h1>Recruiter {currState}</h1>
 
-                                   <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
-
-                                   <Input
-                                        type={passVisible ? "text" : "password"}
-                                        value={formData.password}
-                                        name="password"
-                                        placeholder={""}
-                                        inputRef={password}
-                                        onKeyUp={() => ValidatePass(password.current, errorbox.current[2], labels.current[2])}
-                                        onChange={handleChange}
-                                   />
-
-                                   <label ref={(e) => (labels.current[2] = e)} htmlFor="password" className='floating-label'>Enter password</label>
-
-                                   <i className={`fa-regular fa-eye${passVisible ? "" : "-slash"} eye-icon`} onClick={() => setpassVisible(!passVisible)}></i>
-
-                                   <div ref={(e) => (errorbox.current[2] = e)} className="error pass-error"><i className="material-icons">info_outline</i> invalid password</div>
-
-                              </div>
-
-                              <Button text={currState} onClick={handleNext} />
-
-                              <div className="form-link">
+                                   <div onClick={() => setshowRecruiterLogin(false)} className='absolute text-xl top-0 right-0 p-2 hover:text-white rounded-tr-md duration-200 hover:bg-red-500 bg-gray-200 cursor-pointer '>
+                                        <IoMdClose />
+                                   </div>
 
                                    {
                                         currState === "Sign Up"
-                                             ? <p>already have an account ? <span onClick={() => setcurrState("Login")} >Login</span> </p>
-                                             : <p>Do not have an account ? <span onClick={() => setcurrState("Sign Up")} >Create Account</span> </p>
+                                             ?
+                                             <div className="input-box">
+
+                                                  <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
+                                                  <Input
+                                                       type="text"
+                                                       value={formData.username}
+                                                       name="username"
+                                                       placeholder={""}
+                                                       inputRef={username}
+                                                       onKeyUp={() => ValidateUsername(username.current, errorbox.current[0], labels.current[0])}
+                                                       onChange={handleChange}
+                                                       spellCheck={false}
+                                                  />
+
+                                                  <label ref={(e) => (labels.current[0] = e)} htmlFor="username" className='floating-label'>Enter Username</label>
+
+                                                  <div ref={(e) => (errorbox.current[0] = e)} className="error username-error"> <i className="material-icons">info_outline</i> invalid username </div>
+
+                                             </div>
+                                             :
+                                             <></>
                                    }
 
-                              </div>
+                                   <div className="input-box">
 
-                              <div className="line"></div>
+                                        <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
 
-                              <div className="media-options">
+                                        <Input
+                                             type="email"
+                                             value={formData.email}
+                                             name="email"
+                                             placeholder={""}
+                                             inputRef={email}
+                                             onKeyUp={() => ValidateEmail(email.current, errorbox.current[1], labels.current[1])}
+                                             onChange={handleChange}
+                                             spellCheck={false}
+                                        />
 
-                                   <div href="/" className="field google">
+                                        <label ref={(e) => (labels.current[1] = e)} htmlFor="email" className='floating-label'>Enter Email</label>
 
-                                        <img src={assets.google_logo} alt="" className="google-img" />
-                                        <span>Google</span>
+                                        <div ref={(e) => (errorbox.current[1] = e)} className="error email-error"> <i className="material-icons">info_outline</i> </div>
 
                                    </div>
 
-                                   <div href="/" className="field facebook">
+                                   <div className="input-box">
 
-                                        <i className='fa-brands fa-facebook facebook-icon'></i>
-                                        <span>Facebook</span>
+                                        <i className="success-icon fa-solid fa-circle-check" style={{ color: '#18c994' }}></i>
+
+                                        <Input
+                                             type={passVisible ? "text" : "password"}
+                                             value={formData.password}
+                                             name="password"
+                                             placeholder={""}
+                                             inputRef={password}
+                                             onKeyUp={() => ValidatePass(password.current, errorbox.current[2], labels.current[2])}
+                                             onChange={handleChange}
+                                        />
+
+                                        <label ref={(e) => (labels.current[2] = e)} htmlFor="password" className='floating-label'>Enter password</label>
+
+                                        <i className={`fa-regular fa-eye${passVisible ? "" : "-slash"} eye-icon`} onClick={() => setpassVisible(!passVisible)}></i>
+
+                                        <div ref={(e) => (errorbox.current[2] = e)} className="error pass-error"><i className="material-icons">info_outline</i> invalid password</div>
+
+                                   </div>
+
+                                   <Button text={currState} onClick={handleNext} />
+
+                                   <div className="form-link">
+
+                                        {
+                                             currState === "Sign Up"
+                                                  ? <p>already have an account ? <span onClick={() => setcurrState("Login")} >Login</span> </p>
+                                                  : <p>Do not have an account ? <span onClick={() => setcurrState("Sign Up")} >Create Account</span> </p>
+                                        }
+
+                                   </div>
+
+                                   <div className="line"></div>
+
+                                   <div className="media-options">
+
+                                        <div href="/" className="field google">
+
+                                             <img src={assets.google_logo} alt="" className="google-img" />
+                                             <span>Google</span>
+
+                                        </div>
+
+                                        <div href="/" className="field facebook">
+
+                                             <i className='fa-brands fa-facebook facebook-icon'></i>
+                                             <span>Facebook</span>
+
+                                        </div>
 
                                    </div>
 
                               </div>
-
-                         </div>
-               }
+                    }
+               </div>
 
           </div>
 

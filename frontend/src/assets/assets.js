@@ -51,6 +51,31 @@ import notification_icon from "./notification_icon.png"
 import view_application from "./view_application.png"
 import manage_job from "./manage_job.png"
 
+import Technology from "./Technology.png";
+import Transport from "./Transport.png";
+import Production from "./Production.png";
+import Insurance from "./Insurance.png";
+import Manufacturing from "./Manufacturing.png";
+import Construction from "./Construction.png";
+import finance from "./finance.png";
+import Agriculture from "./Agriculture.png";
+
+import technologyHover from './technology-hover.png';
+import financeHover from './finance-hover.png';
+import transportHover from './transport-hover.png';
+import productionHover from './production-hover.png';
+import manufacturingHover from './manufacturing-hover.png';
+import insuranceHover from './insurance-hover.png';
+import constructionHover from './construction-hover.png';
+import agricultureHover from './agriculture-hover.png';
+import Neeva from "./Neeva.png";
+import NeevaSvg from "./Neeva.svg";
+import NewLogo from "./NewLogo.png";
+import banner from "./banner.jpg";
+
+import doc_Icon from "./doc_Icon.png";
+import image_icon from "./image_icon.png";
+
 export const assets = {
     logo,
     light_logo,
@@ -99,8 +124,68 @@ export const assets = {
     job_Icon,
     notification_icon,
     view_application,
-    manage_job
+    manage_job,
+    Technology,
+    Transport,
+    Production,
+    Insurance,
+    Manufacturing,
+    Construction,
+    finance,
+    Agriculture,
+    technologyHover,
+    financeHover,
+    transportHover,
+    productionHover,
+    manufacturingHover,
+    insuranceHover,
+    constructionHover,
+    agricultureHover,
+    Neeva,
+    NeevaSvg,
+    NewLogo,
+    banner,
+    doc_Icon,
+    image_icon
 }
+
+export const Jobtypes = [
+    {
+        id: 1,
+        name: 'Full Time',
+        avatar: "https://img.icons8.com/?size=100&id=ZQSwzt886UqA&format=png&color=000000"
+    },
+    {
+        id: 2,
+        name: 'Part Time',
+        avatar: "https://img.icons8.com/?size=100&id=R28GTU6fB5qS&format=png&color=000000"
+    },
+    {
+        id: 3,
+        name: 'Internship',
+        avatar: "https://img.icons8.com/?size=100&id=Uq25KqZQeZME&format=png&color=000000"
+    },
+]
+
+export const EmpType = [
+
+    {
+        id: 1,
+        name: 'Parmanent',
+        avatar: "https://img.icons8.com/?size=100&id=20497&format=png&color=000000"
+    },
+    {
+        id: 2,
+        name: 'Temporary',
+        avatar: "https://img.icons8.com/?size=100&id=btIoQZB8x0fj&format=png&color=000000"
+    },
+    {
+        id: 3,
+        name: 'Freelance',
+        avatar: "https://img.icons8.com/?size=100&id=zARik4JcFgQ6&format=png&color=000000"
+    },
+]
+
 
 export const JobCategories = [
     {
@@ -569,6 +654,7 @@ export const manageJobsData = [
 // Sample data for Profile Page
 export const jobsApplied = [
     {
+        id : 1,
         company: 'Amazon',
         title: 'Full Stack Developer',
         location: 'Bangalore',
@@ -577,6 +663,7 @@ export const jobsApplied = [
         logo: amazon_logo2,
     },
     {
+        id : 2,
         company: 'Meta',
         title: 'Data Scientist',
         location: 'San Francisco',
@@ -585,6 +672,7 @@ export const jobsApplied = [
         logo: meta_logo,
     },
     {
+        id : 3,
         company: 'Google',
         title: 'Marketing Manager',
         location: 'London',
@@ -593,6 +681,7 @@ export const jobsApplied = [
         logo: google_logo,
     },
     {
+        id : 4,
         company: 'Qualcomm',
         title: 'UI/UX Designer',
         location: 'Dubai',
@@ -601,6 +690,7 @@ export const jobsApplied = [
         logo: qualcomm_logo,
     },
     {
+        id : 5,
         company: 'Microsoft',
         title: 'Full Stack Developer',
         location: 'Hyderabad',
@@ -609,6 +699,7 @@ export const jobsApplied = [
         logo: microsoft_logo_png,
     },
     {
+        id : 6,
         company: 'Amazon',
         title: 'Full Stack Developer',
         location: 'Bangalore',
@@ -617,6 +708,7 @@ export const jobsApplied = [
         logo: amazon_logo2,
     },
     {
+        id : 7,
         company: 'Meta',
         title: 'Data Scientist',
         location: 'San Francisco',
@@ -625,6 +717,7 @@ export const jobsApplied = [
         logo: meta_logo,
     },
     {
+        id : 8,
         company: 'Google',
         title: 'Marketing Manager',
         location: 'London',
@@ -633,6 +726,7 @@ export const jobsApplied = [
         logo: google_logo,
     },
     {
+        id : 9,
         company: 'Qualcomm',
         title: 'UI/UX Designer',
         location: 'Dubai',
@@ -641,6 +735,7 @@ export const jobsApplied = [
         logo: qualcomm_logo,
     },
     {
+        id : 10,
         company: 'Microsoft',
         title: 'Full Stack Developer',
         location: 'Hyderabad',
@@ -649,6 +744,7 @@ export const jobsApplied = [
         logo: microsoft_logo_png,
     },
     {
+        id : 11,
         company: 'Amazon',
         title: 'Full Stack Developer',
         location: 'Bangalore',
@@ -657,6 +753,7 @@ export const jobsApplied = [
         logo: amazon_logo2,
     },
     {
+        id : 12,
         company: 'Meta',
         title: 'Data Scientist',
         location: 'San Francisco',
@@ -665,6 +762,7 @@ export const jobsApplied = [
         logo: meta_logo,
     },
     {
+        id : 13,
         company: 'Google',
         title: 'Marketing Manager',
         location: 'London',
@@ -673,6 +771,7 @@ export const jobsApplied = [
         logo: google_logo,
     },
     {
+        id : 14,
         company: 'Qualcomm',
         title: 'UI/UX Designer',
         location: 'Dubai',
@@ -681,6 +780,7 @@ export const jobsApplied = [
         logo: qualcomm_logo,
     },
     {
+        id : 15,
         company: 'Microsoft',
         title: 'Full Stack Developer',
         location: 'Hyderabad',
@@ -691,48 +791,48 @@ export const jobsApplied = [
 ];
 
 export const viewApplicationsPageData = [
-    { id: 1, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 2, date : "1338947100 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 3, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 4, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 5, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 6, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 7, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
-    { id: 8, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 9, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 10, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 11, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 12, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 13, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 14, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
-    { id: 15, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 16, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 17, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 18, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 19, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 20, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 21, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
-    { id: 22, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 23, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 24, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 25, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 26, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 27, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 28, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
-    { id: 29, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 30, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 31, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 32, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 33, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 34, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 35, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
-    { id: 36, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
-    { id: 37, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { id: 38, date : "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { id: 39, date : "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { id: 40, date : "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
-    { id: 41, date : "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { id: 42, date : "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img }
+    { id: 1, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 2, date: "1338947100 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 3, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 4, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 5, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 6, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 7, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { id: 8, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 9, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 10, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 11, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 12, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 13, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 14, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { id: 15, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 16, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 17, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 18, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 19, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 20, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 21, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { id: 22, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 23, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 24, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 25, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 26, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 27, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 28, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { id: 29, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 30, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 31, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 32, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 33, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 34, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 35, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { id: 36, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { id: 37, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { id: 38, date: "1738947600 ", name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { id: 39, date: "1738947600 ", name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { id: 40, date: "1738947600 ", name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { id: 41, date: "1738947600 ", name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { id: 42, date: "1738947600 ", name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img }
 
 
 ];
@@ -742,12 +842,13 @@ export const jobsData = [
         _id: '1',
         title: "Full Stack Developer",
         location: "California",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
-            "name": "Slack",
+            "name": "Google",
             "email": "slack@demo.com",
-            "image": company_icon,
+            "image": google_logo,
         },
         description: `
         <p>We are seeking a highly skilled Full Stack Developer to join our dynamic and innovative team. The ideal candidate will have a passion for developing scalable web applications and working across the entire technology stack, including front-end and back-end development. You will have the opportunity to work with the latest technologies and contribute to exciting projects that impact our users directly.</p>
@@ -775,12 +876,13 @@ export const jobsData = [
         _id: '2',
         title: "Data Scientist",
         location: "New York",
+        type: "Part Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
-            "name": "Slack",
+            "name": "Amazon",
             "email": "slack@demo.com",
-            "image": company_icon,
+            "image": amazon_logo2,
         },
         description: `
         <p>Join our analytics team to help drive business decisions using data. As a Data Scientist, you will leverage your analytical skills to uncover patterns and insights that will influence our strategic direction. You will work closely with stakeholders to understand their needs and deliver impactful analyses that support our growth objectives. Your role is critical in turning data into actionable insights.</p>
@@ -808,12 +910,13 @@ export const jobsData = [
         _id: '3',
         title: "UI/UX Designer",
         location: "Bangalore",
+        type: "Part Time",
         level: "Beginner Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
-            "name": "Slack",
+            "name": "Microsoft",
             "email": "slack@demo.com",
-            "image": company_icon,
+            "image": microsoft_logo_png,
         },
         description: `
         <p>Create intuitive digital experiences as a UI/UX Designer. In this role, you will collaborate with product teams to design engaging user interfaces and ensure a seamless user journey. Your creativity and attention to detail will be crucial in developing designs that not only look good but also enhance functionality and user satisfaction.</p>
@@ -841,12 +944,13 @@ export const jobsData = [
         _id: '4',
         title: "DevOps Engineer",
         location: "Washington",
+        type: "Part Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
-            "name": "Slack",
+            "name": "Meta",
             "email": "slack@demo.com",
-            "image": company_icon,
+            "image": meta_logo,
         },
         description: `
         <p>Enhance our deployment pipeline as a DevOps Engineer. This role will involve automating deployment processes, managing cloud infrastructure, and implementing best practices for security and performance. You will play a vital role in bridging the gap between development and operations, ensuring efficient workflows and high-quality releases.</p>
@@ -874,6 +978,7 @@ export const jobsData = [
         _id: '5',
         title: "Software Engineer",
         location: "Hyderabad",
+        type: "Part Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -907,6 +1012,7 @@ export const jobsData = [
         _id: '6',
         title: "Network Engineer",
         location: "Bangalore",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -940,6 +1046,7 @@ export const jobsData = [
         _id: '7',
         title: "Project Manager",
         location: "Bangalore",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -973,6 +1080,7 @@ export const jobsData = [
         _id: '8',
         title: "Mobile App Developer",
         location: "Hyderabad",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1006,6 +1114,7 @@ export const jobsData = [
         _id: '9',
         title: "Cloud Architect",
         location: "Hyderabad",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1039,6 +1148,7 @@ export const jobsData = [
         _id: '10',
         title: "Technical Writer",
         location: "Mumbai",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1072,6 +1182,7 @@ export const jobsData = [
         _id: '11',
         title: "Cybersecurity Analyst",
         location: "Mumbai",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1105,6 +1216,7 @@ export const jobsData = [
         _id: '12',
         title: "Business Analyst",
         location: "Mumbai",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1138,6 +1250,7 @@ export const jobsData = [
         _id: '13',
         title: "Marketing Specialist",
         location: "Chennai",
+        type: "Full Time",
         level: "Beginner Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1171,6 +1284,7 @@ export const jobsData = [
         _id: '14',
         title: "Data Scientist",
         location: "California",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1204,6 +1318,7 @@ export const jobsData = [
         _id: '15',
         title: "UX/UI Designer",
         location: "Hyderabad",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1237,6 +1352,7 @@ export const jobsData = [
         _id: '16',
         title: "DevOps Engineer",
         location: "Bangalore",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1270,6 +1386,7 @@ export const jobsData = [
         _id: '17',
         title: "Sales Manager",
         location: "New York",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1303,6 +1420,7 @@ export const jobsData = [
         _id: '18',
         title: "Human Resources Specialist",
         location: "Washington",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1336,6 +1454,7 @@ export const jobsData = [
         _id: '19',
         title: "Content Marketing Manager",
         location: "Mumbai",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1369,6 +1488,7 @@ export const jobsData = [
         _id: '20',
         title: "Graphic Designer",
         location: "Chennai",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1402,6 +1522,7 @@ export const jobsData = [
         _id: '21',
         title: "Software Tester",
         location: "Chennai",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1435,6 +1556,7 @@ export const jobsData = [
         _id: '22',
         title: "Network Security Engineer",
         location: "Bangalore",
+        type: "Full Time",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1461,13 +1583,14 @@ export const jobsData = [
             <li>Strong communication skills to work with technical and non-technical teams.</li>
         </ol>`,
         salary: 87000,
-        date: 1729681667114,
+        date: 1739681667114,
         category: "Cybersecurity",
     },
     {
         _id: '23',
         title: "Cloud Engineer",
         location: "Hyderabad",
+        type: "Full Time",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -1494,7 +1617,7 @@ export const jobsData = [
             <li>Good problem-solving skills and attention to detail.</li>
         </ol>`,
         salary: 102000,
-        date: 1729681667114,
+        date: 1629681667114,
         category: "Programming",
     }
 ];

@@ -40,6 +40,7 @@ createRoot(document.getElementById('root')).render(
                          newestOnTop={false}
                          closeOnClick={false}
                          rtl={false}
+                         limit={3}
                          pauseOnFocusLoss
                          draggable
                          pauseOnHover

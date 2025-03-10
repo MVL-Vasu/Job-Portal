@@ -15,7 +15,7 @@ import {
      GridToolbarColumnsButton,
      GridToolbarFilterButton,
      GridToolbarDensitySelector,
-     GridToolbarQuickFilter
+     GridToolbarQuickFilter 
 } from "@mui/x-data-grid";
 import axios from 'axios';
 import { AppContext } from '../../context/AppContext';

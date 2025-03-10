@@ -39,8 +39,8 @@
      padding: 0 4px;
      background-color: white;
      translate: 0 -50%;
-     transition: all 0.5s;
      cursor: text;
+     transition: all 0.3s;
 }
 
 .auth-container .input-box input {

@@ -1,0 +1,29 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+
+body{
+     display: flex;
+     justify-content: center;
+     background-color: #dde1e7;
+     align-items: center;
+     gap: 70px;
+     min-height: 100vh;
+}
+
+.box{
+     height: 200px;
+     border-radius: 20px;
+     width: 200px;
+     box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45), 5px 5px 9px rgba(94,104,121,0.3);
+     transition: all 5s ease-in-out;
+}
+
+.box:active{
+     height: 200px;
+     border-radius: 20px;
+     width: 200px;
+     box-shadow:inset -5px -5px 9px rgba(255, 255, 255, 0.45), inset 5px 5px 9px rgba(94,104,121,0.3);
+}

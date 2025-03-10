@@ -1,14 +1,14 @@
 import React from 'react';
-import { assets } from '../assets/assets';
+import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom';
 
-const JobCard = ({ job }) => {
+const JobCard2 = ({ job }) => {
 
      const Navigate = useNavigate();
 
      return (
 
-          <div data-aos="fade-up" data-aos-offset="50" data-aos-once="false" data-aos-duration="1000" className='p-6 shadow bg-white rounded'>
+          <div className='p-6 shadow-custom hover:shadow-dark-custom bg-white rounded'>
 
                <div className='flex justify-between items-center'>
 
@@ -46,4 +46,4 @@ const JobCard = ({ job }) => {
      );
 }
 
-export default JobCard;
+export default JobCard2;

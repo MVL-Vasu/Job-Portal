@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { jobsData } from "../assets/assets";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useAuth } from "@clerk/clerk-react"
 
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+
+     const { getToken } = useAuth();
+
+     const [userData, setuserData] = useState("");
 
      const [DarkMode, setDarkMode] = useState(false);
 
@@ -26,9 +33,54 @@ export const AppContextProvider = (props) => {
 
      const FetchJobsData = async () => {
 
-          setJobs(jobsData);
+          // setJobs(jobsData);
+
+          fetch("http://localhost:3001/api/job/get-all-jobs", {
+               method: "POST"
+          })
+               .then((res) => res.json())
+               .then((data) => setJobs(data.jobs))
+
+          if (localStorage.getItem("JobPortalAuthToken")) {
+               setRole("recruiter");
+          } else {
+               setRole("user");
+          }
 
      }
+
+     const FetchUserData = async () => {
+
+          try {
+
+               const token = await getToken();
+               if (token) {
+
+                    const response = await axios.post(
+                         "http://localhost:3001/api/users/userData",
+                         { data: "example data" },
+                         {
+                              headers: {
+                                   Authorization: `Bearer ${token}`
+                              }
+                         }
+                    )
+
+                    if (response.data.success) {
+                         setuserData(response.data.userData)
+                    }
+               }
+
+
+          } catch (err) {
+
+               console.error(err);
+               toast.error("Error")
+
+          }
+
+     };
+
 
      useEffect(() => {
 
@@ -36,15 +88,11 @@ export const AppContextProvider = (props) => {
 
           FetchJobsData();
 
-          if (localStorage.getItem("JobPortalAuthToken")) {
-               setRole("recruiter");
-          }else{
-               setRole("user");
-          }
+          FetchUserData();
 
-          setTimeout(() => {
-               setIsLoading(false);
-          }, 2000);
+          // setTimeout(() => {
+          // setIsLoading(false);
+          // }, 2000);
 
      }, [])
 

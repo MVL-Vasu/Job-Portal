@@ -12,7 +12,7 @@ import {
      GridToolbarFilterButton,
      GridToolbarDensitySelector,
      GridToolbarQuickFilter
-} from "@mui/x-data-grid";
+} from "@mui/x-data-grid"; 
 
 import { BsThreeDotsVertical } from "react-icons/bs";
 

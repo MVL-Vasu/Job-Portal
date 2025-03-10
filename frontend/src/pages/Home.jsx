@@ -1,9 +1,10 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import JobListing from '../components/JobListing';
+import LetestJobs from '../components/LetestJobs';
 import AppDownload from '../components/AppDownload';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import JobCategory from '../components/JobCategory';
 
 const Home = () => {
 
@@ -12,19 +13,22 @@ const Home = () => {
 
      return (
 
-          <div className='bg-gradient-to-b from-[#F4F7FB] to-[#F8F9FA] '>
-               {/* <div className='bg-[#F9F9F9]'> */}
-               {/* <div className='bg-white'> */}
+          <div className='dark:bg-black bg-gradient-to-b from-[#F4F7FB] to-[#F8F9FA] '>
+               {/* // <div className='bg-[#F7F7F7]'> */}
+               {/* < div className = 'bg-white' > */}
 
                <Navbar />
 
-               {!isChildRouteActive && (
-                    <div className='bg-white'>
-                         <Hero />
-                         <JobListing />
-                         <AppDownload />
-                    </div>
-               )}
+               {
+                    !isChildRouteActive && (
+                         <div className='bg-[#fefefe]'>
+                              <Hero />
+                              <JobCategory />
+                              <LetestJobs />
+                              <AppDownload />
+                         </div>
+                    )
+               }
 
                <Outlet />
 
